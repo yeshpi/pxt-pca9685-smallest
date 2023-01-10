@@ -110,9 +110,7 @@ namespace PCA9685 {
         }
 
         init(config: ServoConfigObject) {
-            //this.pinNumber = config.pinNumber > -1 ? config.pinNumber : this.id - 1
-            this.pinNumber = config.pinNumber
-
+            this.pinNumber = config.pinNumber > -1 ? config.pinNumber : this.id - 1
             this.setOffsetsFromFreq(config.minOffset, config.maxOffset, config.midOffset)
             this.position = -1
         }
@@ -120,9 +118,7 @@ namespace PCA9685 {
         setOffsetsFromFreq(startFreq: number, stopFreq: number, midFreq: number = -1): void {
             this.minOffset = startFreq // calcFreqOffset(startFreq)
             this.maxOffset = stopFreq // calcFreqOffset(stopFreq)
-
-            //this.midOffset = midFreq > -1 ? midFreq : ((stopFreq - startFreq) / 2) + startFreq
-            this.midOffset = midFreq
+            this.midOffset = midFreq > -1 ? midFreq : ((stopFreq - startFreq) / 2) + startFreq
         }
     }
 
