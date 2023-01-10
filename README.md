@@ -5,16 +5,16 @@ This is an extremely generic PCA9685 driver for the BBC micro:bit and Microsoft 
 
 Supported LED, Servo, Continuous Rotation Servo and direct manipulation of the PCA9685.
 
-![pca9685_01](https://user-images.githubusercontent.com/44191076/47269928-d9c24b80-d596-11e8-8627-65a4f2349518.JPG)
+![image](img/pic1.jpg)
 
 ## Adding to Project
 
 From within [MakeCode](https://makecode.microbit.org/) select the "Advanced" section. Click on "+ Extensions" in the "Search or enter project URL..." section enter "https://github.com/mworkfun/pxt-pca9685-smallest".
 
-![002](https://user-images.githubusercontent.com/44191076/47691442-09272700-dc2d-11e8-98bc-c6a800acb15f.jpg)
-![003](https://user-images.githubusercontent.com/44191076/47691443-09272700-dc2d-11e8-8faf-97b047e6282c.jpg)
+![image](img/pic2.jpg)
+![image](img/pic3.jpg)
 
-![001](https://user-images.githubusercontent.com/44191076/47691444-09272700-dc2d-11e8-802b-d0bbf76c9468.jpg)
+![image](img/pic4.jpg)
 
 ## Constants
 
@@ -139,7 +139,7 @@ Maintains the existing chip frequency setup and performs a chip init, see init(c
 
 ## Example Usage
 
-![microbit-screenshot](https://user-images.githubusercontent.com/44191076/47691636-d5003600-dc2d-11e8-90f9-38d755a81ee2.png)
+![image](img/pic5.png)
 
 ```
 let controller = 0
@@ -155,8 +155,6 @@ input.onButtonPressed(Button.AB, () => {
     PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, 90, controller)
     basic.showString("C")
 })
-controller = PCA9685.chipAddress("0x40")
-basic.showNumber(controller)
 PCA9685.init(controller, 60)
 ```
 
