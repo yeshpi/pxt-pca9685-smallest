@@ -9,7 +9,7 @@ Supported LED, Servo, Continuous Rotation Servo and direct manipulation of the P
 
 ## Adding to Project
 
-From within [MakeCode](https://makecode.microbit.org/) select the "Advanced" section. Click on "+ Extensions" in the "Search or enter project URL..." section enter "jdarling/pxt-pca9685" or simply "PCA9685".
+From within [MakeCode](https://makecode.microbit.org/) select the "Advanced" section. Click on "+ Extensions" in the "Search or enter project URL..." section enter "https://github.com/mworkfun/pxt-pca9685-smallest".
 
 ![002](https://user-images.githubusercontent.com/44191076/47691442-09272700-dc2d-11e8-98bc-c6a800acb15f.jpg)
 ![003](https://user-images.githubusercontent.com/44191076/47691443-09272700-dc2d-11e8-8faf-97b047e6282c.jpg)
@@ -171,5 +171,5 @@ MIT
 
 
 ```package
-pxt-pca9685=github:jdarling/pxt-pca9685
+https://github.com/mworkfun/pxt-pca9685-smallest
 ```
