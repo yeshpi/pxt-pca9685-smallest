@@ -193,7 +193,7 @@ namespace PCA9685 {
      */
     //% block advanced=true
     export function setPinPulseRange(pinNumber: PinNum = 0, onStep: number = 0, offStep: number = 2048, chipAddress: number = 0x40): void {
-        pinNumber = Math.max(0, Math.min(15, pinNumber))
+        //pinNumber = Math.max(0, Math.min(15, pinNumber))
         const buffer = pins.createBuffer(2)
         const pinOffset = PinRegDistance * pinNumber
         onStep = Math.max(0, Math.min(4095, onStep))
@@ -217,7 +217,7 @@ namespace PCA9685 {
      */
     //% block
     export function setLedDutyCycle(ledNum: LEDNum = 1, dutyCycle: number, chipAddress: number = 0x40): void {
-        ledNum = Math.max(1, Math.min(16, ledNum))
+        //ledNum = Math.max(1, Math.min(16, ledNum))
         dutyCycle = Math.max(0, Math.min(100, dutyCycle))
         const pwm = (dutyCycle * (chipResolution - 1)) / 100
         return setPinPulseRange(ledNum - 1, 0, pwm, chipAddress)
@@ -242,7 +242,7 @@ namespace PCA9685 {
     //% block
     export function setServoPosition(servoNum: ServoNum = 1, degrees: number, chipAddress: number = 0x40): void {
         const chip = getChipConfig(chipAddress)
-        servoNum = Math.max(1, Math.min(16, servoNum))
+        //servoNum = Math.max(1, Math.min(16, servoNum))
         degrees = Math.max(0, Math.min(180, degrees))
         const servo: ServoConfig = chip.servos[servoNum - 1]
         const pwm = degrees180ToPWM(chip.freq, degrees, servo.minOffset, servo.maxOffset)
@@ -261,7 +261,7 @@ namespace PCA9685 {
     //% block advanced=true
     export function setServoLimits(servoNum: ServoNum = 1, minTimeCs: number = 5, maxTimeCs: number = 2.5, midTimeCs: number = -1, chipAddress: number = 0x40): void {
         const chip = getChipConfig(chipAddress)
-        servoNum = Math.max(1, Math.min(16, servoNum))
+        //servoNum = Math.max(1, Math.min(16, servoNum))
         minTimeCs = Math.max(0, minTimeCs)
         maxTimeCs = Math.max(0, maxTimeCs)
         const servo: ServoConfig = chip.servos[servoNum - 1]
@@ -281,7 +281,6 @@ namespace PCA9685 {
         const prescaler = calcFreqPrescaler(freq)
 
         write(chipAddress, modeRegister1, sleep)
-
         write(chipAddress, PrescaleReg, prescaler)
 
         write(chipAddress, allChannelsOnStepLowByte, 0x00)
@@ -290,7 +289,6 @@ namespace PCA9685 {
         write(chipAddress, allChannelsOffStepHighByte, 0x00)
 
         write(chipAddress, modeRegister1, wake)
-
         control.waitMicros(1000)
         write(chipAddress, modeRegister1, restart)
     }
