@@ -1,4 +1,4 @@
-let controller = PCA9685.chipAddress("0x40")
+let controller = 64
 input.onButtonPressed(Button.A, () => {
     PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, 0, controller)
     basic.showString("A")
