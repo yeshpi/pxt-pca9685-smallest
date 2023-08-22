@@ -3,7 +3,7 @@
  */
 //% weight=100 color=#0fbc11 icon=""
 namespace PCA9685 {
-    //const MIN_CHIP_ADDRESS = 0x40
+    const MIN_CHIP_ADDRESS = 0x43
     //const MAX_CHIP_ADDRESS = MIN_CHIP_ADDRESS + 62
     const chipResolution = 4096;
     const PrescaleReg = 0xFE //the prescale register address
@@ -126,7 +126,7 @@ namespace PCA9685 {
         address: number;
         servos: ServoConfig[];
         freq: number;
-        constructor(address: number = 0x40, freq: number = 50) {
+        constructor(address: number = 0x43, freq: number = 50) {
             this.address = address
             this.servos = [
                 new ServoConfig(1, DefaultServoConfig),
@@ -188,7 +188,7 @@ namespace PCA9685 {
      * @param offStep The range offset (0-4095) to turn the signal off
      */
     //% block advanced=true
-    export function setPinPulseRange(pinNumber: PinNum = 0, onStep: number = 0, offStep: number = 2048, chipAddress: number = 0x40): void {
+    export function setPinPulseRange(pinNumber: PinNum = 0, onStep: number = 0, offStep: number = 2048, chipAddress: number = 0x43): void {
         //pinNumber = Math.max(0, Math.min(15, pinNumber))
         const buffer = pins.createBuffer(2)
         const pinOffset = PinRegDistance * pinNumber
@@ -212,7 +212,7 @@ namespace PCA9685 {
      * @param dutyCycle The duty cycle (0-100) to set the LED to
      */
     //% block
-    export function setLedDutyCycle(ledNum: LEDNum = 1, dutyCycle: number, chipAddress: number = 0x40): void {
+    export function setLedDutyCycle(ledNum: LEDNum = 1, dutyCycle: number, chipAddress: number = 0x43): void {
         //ledNum = Math.max(1, Math.min(16, ledNum))
         dutyCycle = Math.max(0, Math.min(100, dutyCycle))
         const pwm = (dutyCycle * (chipResolution - 1)) / 100
@@ -236,7 +236,7 @@ namespace PCA9685 {
      * @param degrees The degrees (0-180) to move the servo to
      */
     //% block
-    export function setServoPosition(servoNum: ServoNum = 1, degrees: number, chipAddress: number = 0x40): void {
+    export function setServoPosition(servoNum: ServoNum = 1, degrees: number, chipAddress: number = 0x43): void {
         const chip = getChipConfig(chipAddress)
         //servoNum = Math.max(1, Math.min(16, servoNum))
         degrees = Math.max(0, Math.min(180, degrees))
@@ -255,7 +255,7 @@ namespace PCA9685 {
      * @param midTimeCs The mid (90 degree for regular or off position if continuous rotation) for the servo; eg: 15
      */
     //% block advanced=true
-    export function setServoLimits(servoNum: ServoNum = 1, minTimeCs: number = 5, maxTimeCs: number = 2.5, midTimeCs: number = -1, chipAddress: number = 0x40): void {
+    export function setServoLimits(servoNum: ServoNum = 1, minTimeCs: number = 5, maxTimeCs: number = 2.5, midTimeCs: number = -1, chipAddress: number = 0x43): void {
         const chip = getChipConfig(chipAddress)
         //servoNum = Math.max(1, Math.min(16, servoNum))
         minTimeCs = Math.max(0, minTimeCs)
@@ -271,7 +271,7 @@ namespace PCA9685 {
      * @param newFreq [40-1000] Frequency (40-1000) in hertz to run the clock cycle at; eg: 50
      */
     //% block advanced=true
-    export function init(chipAddress: number = 0x40, newFreq: number = 50) {
+    export function init(chipAddress: number = 0x43, newFreq: number = 50) {
         const buf = pins.createBuffer(2)
         const freq = (newFreq > 1000 ? 1000 : (newFreq < 40 ? 40 : newFreq))
         const prescaler = calcFreqPrescaler(freq)
@@ -294,7 +294,7 @@ namespace PCA9685 {
      * @param chipAddress [64-125] The I2C address of your PCA9685; eg: 64
      */
     //% block
-    export function reset(chipAddress: number = 0x40): void {
+    export function reset(chipAddress: number = 0x43): void {
         return init(chipAddress, getChipConfig(chipAddress).freq);
     }
 }
